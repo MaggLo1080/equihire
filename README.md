@@ -23,8 +23,7 @@ Para los equipos de Recursos Humanos y reclutadores, lograremos que puedan detec
 
 - Tablero Scrum: [completar enlace]
 - Documentación / Wiki: https://github.com/MaggLo1080/equihire/wiki/Actas-Sprint-1
-- Tablero de Miro: [completar enlace]
-
+- Tablero de Miro: https://miro.com/welcomeonboard/QTVGeDNoa2dGWUl1eHh5dC9NVFlOb0xIRGtkR3lrL0tOZUk5SFpTVTBiU3dDSGFOQUNiUS9lakJLMmRPVkVYM2V2a0ZJWXoyUHpCcG9lNEFwTjBSaUczS3VCWVNGVmpIcUxseWZqK2psemtzakZWcElIOEkxeVA3UCt3RzNvRi9NakdSWkpBejJWRjJhRnhhb1UwcS9BPT0hdjE=?share_link_id=140733144138
 ## Sprint 1
 
 **Sprint Goal:** Al finalizar el Sprint, el reclutador podrá analizar una oferta laboral, identificar frases o requisitos con sesgo de género y visualizar el reporte con las recomendaciones de redacción.
