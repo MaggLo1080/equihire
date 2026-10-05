@@ -43,6 +43,17 @@
 
       <p id="estado-vacio" class="vacio">Cuando analices una oferta, aquí verás cada hallazgo con su explicación y una alternativa inclusiva.</p>
 
+      <div id="indice" class="indice" hidden>
+        <div class="indice-cifra">
+          <span id="puntaje">0</span><span class="indice-maximo">/100</span>
+        </div>
+        <div class="indice-texto">
+          <p class="indice-etiqueta">Índice de riesgo de equidad</p>
+          <p id="nivel" class="nivel">Bajo</p>
+        </div>
+        <div class="medidor" aria-hidden="true"><div id="medidor-relleno" class="medidor-relleno"></div></div>
+        <p id="resumen" class="resumen"></p>
+      </div>
 
       <ol id="hallazgos" class="hallazgos"></ol>
     </aside>
@@ -54,6 +65,7 @@
 
   <script src="src/catalogo.js"></script>
   <script src="src/analizador.js"></script>
+  <script src="src/riesgo.js"></script>
   <script src="src/app.js"></script>
 </body>
 </html>

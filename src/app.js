@@ -1,11 +1,13 @@
 /**
  * EquiHire · Interfaz de usuario.
  * HU-01 · Ingreso del texto, resaltado de frases, explicación y alternativa inclusiva.
+ * HU-02 · Índice de riesgo de equidad y resumen de hallazgos.
  */
 (function () {
   'use strict';
 
   var analizarOferta = window.EquiHireAnalizador.analizarOferta;
+  var generarReporte = window.EquiHireRiesgo.generarReporte;
 
   var EJEMPLOS = {
     sesgo:
@@ -69,6 +71,17 @@
       .join('');
   }
 
+  function mostrarIndice(hallazgos) {
+    var reporte = generarReporte(hallazgos);
+    var $indice = document.getElementById('indice');
+    var $nivel = document.getElementById('nivel');
+    document.getElementById('puntaje').textContent = reporte.puntaje;
+    $nivel.textContent = 'Riesgo ' + reporte.nivel.toLowerCase();
+    $indice.dataset.nivel = reporte.nivel.toLowerCase();
+    document.getElementById('medidor-relleno').style.width = reporte.puntaje + '%';
+    document.getElementById('resumen').textContent = reporte.resumen;
+    $indice.hidden = false;
+  }
 
   function analizar() {
     var texto = $texto.value.trim();
@@ -87,6 +100,7 @@
     $editar.hidden = false;
     $vacio.hidden = true;
     mostrarHallazgos(hallazgos);
+    mostrarIndice(hallazgos);
     $mensaje.textContent = 'Análisis completado en ' + duracion + ' ms.';
   }
 
