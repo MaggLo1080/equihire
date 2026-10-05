@@ -21,7 +21,7 @@ Para los equipos de Recursos Humanos y reclutadores, lograremos que puedan detec
 
 ## Enlaces del proyecto
 
-- Tablero Scrum: [completar enlace]
+- Tablero Scrum: https://github.com/users/MaggLo1080/projects/1
 - Documentación / Wiki: [https://github.com/MaggLo1080/equihire/wiki/Actas-Sprint-1](https://github.com/MaggLo1080/equihire/wiki)
 - Tablero de Miro: https://miro.com/welcomeonboard/QTVGeDNoa2dGWUl1eHh5dC9NVFlOb0xIRGtkR3lrL0tOZUk5SFpTVTBiU3dDSGFOQUNiUS9lakJLMmRPVkVYM2V2a0ZJWXoyUHpCcG9lNEFwTjBSaUczS3VCWVNGVmpIcUxseWZqK2psemtzakZWcElIOEkxeVA3UCt3RzNvRi9NakdSWkpBejJWRjJhRnhhb1UwcS9BPT0hdjE=?share_link_id=140733144138
 ## Sprint 1
