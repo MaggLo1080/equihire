@@ -60,3 +60,32 @@ Para los equipos de Recursos Humanos y reclutadores, lograremos que puedan detec
 
 - Las credenciales van en un archivo `.env`, incluido en `.gitignore`. Nunca se suben al repositorio.
 - Las ofertas de prueba no contienen datos personales reales.
+
+## Cómo usar EquiHire
+
+1. Abre la aplicación publicada o el archivo `index.html` en el navegador. No requiere instalación.
+2. Pega el texto completo de la oferta laboral, o usa los botones "Cargar ejemplo con sesgo" o "Cargar ejemplo neutro".
+3. Haz clic en **Analizar oferta**.
+4. Revisa las frases resaltadas. Cada una tiene un número que corresponde a un hallazgo, con su explicación y una alternativa de redacción inclusiva.
+5. Haz clic en **Editar texto** para corregir la oferta y volver a analizarla.
+
+El análisis se basa en un catálogo de expresiones con posible sesgo de género (`src/catalogo.js`). Señala posibles sesgos para apoyar la revisión; la redacción final es decisión de la persona responsable de la selección.
+
+## Estructura del proyecto
+
+| Archivo | Contenido |
+|---|---|
+| `index.html` y `styles.css` | Interfaz de la aplicación |
+| `src/catalogo.js` | Catálogo de expresiones con su categoría, severidad, explicación y alternativa |
+| `src/analizador.js` | Motor de análisis que detecta las expresiones en el texto |
+| `src/app.js` | Conexión entre la interfaz y el motor de análisis |
+| `tests/` | Pruebas unitarias con Jest |
+
+## Cómo ejecutar las pruebas
+
+Requiere Node.js 20 o superior.
+
+    npm install
+    npm test
+
+Las pruebas también se ejecutan automáticamente en cada pull request mediante GitHub Actions.
