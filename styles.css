@@ -1,0 +1,246 @@
+/* EquiHire · Hoja de estilos */
+:root {
+  --tinta: #1c2733;
+  --tinta-suave: #4a5868;
+  --papel: #ffffff;
+  --fondo: #eef1f4;
+  --linea: #d5dce3;
+  --acento: #0e5e6f;
+  --acento-oscuro: #0a4652;
+  --alto: #a8261b;
+  --alto-fondo: #fbe7e4;
+  --medio: #8a5300;
+  --medio-fondo: #fff0d4;
+  --bajo: #2d5f8b;
+  --bajo-fondo: #e3eef8;
+  --ok: #1e6b45;
+  --sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--tinta);
+  background: var(--fondo);
+}
+
+h1, h2, p { margin: 0; }
+
+.oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Encabezado */
+.encabezado {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 2rem;
+}
+.marca {
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--acento);
+  margin-bottom: 1.25rem;
+}
+.encabezado h1 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  max-width: 22ch;
+}
+.bajada {
+  margin-top: 0.75rem;
+  max-width: 62ch;
+  color: var(--tinta-suave);
+  font-size: 1.0625rem;
+}
+
+/* Disposición */
+.espacio {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 900px) {
+  .espacio { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); align-items: start; }
+}
+
+.oferta, .reporte {
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+.reporte { position: sticky; top: 1rem; }
+h2 { font-size: 1.125rem; font-weight: 600; }
+
+.oferta-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+.ejemplos { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Texto de la oferta: se lee como un documento */
+textarea, .vista-marcada {
+  width: 100%;
+  min-height: 20rem;
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--tinta);
+  border: 1px solid var(--linea);
+  border-radius: 4px;
+  padding: 1rem 1.125rem;
+  background: #fcfcfd;
+}
+textarea { resize: vertical; }
+.vista-marcada { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+mark {
+  color: inherit;
+  padding: 0.05em 0.15em;
+  border-radius: 2px;
+  border-bottom: 2px solid;
+}
+mark sup {
+  font-family: var(--sans);
+  font-size: 0.65em;
+  font-weight: 600;
+  margin-left: 0.15em;
+}
+mark.severidad-3 { background: var(--alto-fondo); border-color: var(--alto); }
+mark.severidad-2 { background: var(--medio-fondo); border-color: var(--medio); }
+mark.severidad-1 { background: var(--bajo-fondo); border-color: var(--bajo); }
+
+/* Botones */
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-top: 1rem;
+}
+button { font: inherit; cursor: pointer; }
+.primario, .secundario {
+  border-radius: 4px;
+  padding: 0.65rem 1.25rem;
+  font-weight: 600;
+}
+.primario { background: var(--acento); color: #fff; border: 1px solid var(--acento); }
+.primario:hover { background: var(--acento-oscuro); }
+.secundario { background: var(--papel); color: var(--acento); border: 1px solid var(--acento); }
+.enlace {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--acento);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 0.9375rem;
+}
+button:focus-visible, textarea:focus-visible {
+  outline: 3px solid #f2b705;
+  outline-offset: 2px;
+}
+.mensaje { color: var(--tinta-suave); font-size: 0.9375rem; }
+
+/* Reporte */
+.vacio { margin-top: 1rem; color: var(--tinta-suave); }
+
+.indice {
+  margin-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--linea);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  align-items: end;
+}
+.indice-cifra { font-weight: 600; line-height: 1; }
+#puntaje { font-size: 3.5rem; letter-spacing: -0.02em; }
+.indice-maximo { font-size: 1.25rem; color: var(--tinta-suave); margin-left: 0.15rem; }
+.indice-etiqueta { color: var(--tinta-suave); font-size: 0.9375rem; }
+.nivel { font-weight: 600; font-size: 1.25rem; }
+.medidor {
+  grid-column: 1 / -1;
+  height: 0.5rem;
+  margin-top: 0.75rem;
+  background: var(--fondo);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.medidor-relleno { height: 100%; width: 0; background: var(--ok); transition: width 0.5s ease-out; }
+.resumen { grid-column: 1 / -1; margin-top: 0.75rem; }
+
+.indice[data-nivel="bajo"] .nivel { color: var(--ok); }
+.indice[data-nivel="medio"] .nivel { color: var(--medio); }
+.indice[data-nivel="medio"] .medidor-relleno { background: var(--medio); }
+.indice[data-nivel="alto"] .nivel { color: var(--alto); }
+.indice[data-nivel="alto"] .medidor-relleno { background: var(--alto); }
+
+.hallazgos { list-style: none; margin: 0; padding: 0; }
+.hallazgo {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--linea);
+}
+.hallazgo:last-child { border-bottom: 0; }
+.hallazgo-frase {
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.numero {
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  color: #fff;
+  flex-shrink: 0;
+  transform: translateY(-0.1rem);
+}
+.severidad-3 .numero { background: var(--alto); }
+.severidad-2 .numero { background: var(--medio); }
+.severidad-1 .numero { background: var(--bajo); }
+.hallazgo-meta { font-size: 0.875rem; color: var(--tinta-suave); margin: 0.2rem 0 0.5rem 2.1rem; }
+.hallazgo-explicacion, .hallazgo-sugerencia { margin-left: 2.1rem; font-size: 0.9375rem; }
+.hallazgo-sugerencia { margin-top: 0.4rem; }
+.sin-hallazgos { margin-top: 1rem; color: var(--ok); font-weight: 500; }
+
+.pie {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 2.5rem;
+  color: var(--tinta-suave);
+  font-size: 0.875rem;
+}
+.pie p { max-width: 70ch; }
+
+@media (max-width: 899px) {
+  .reporte { position: static; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .medidor-relleno { transition: none; }
+}
