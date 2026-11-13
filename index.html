@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EquiHire: revisión de sesgo de género en ofertas laborales</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
   <meta name="description" content="Revisa una oferta laboral antes de publicarla y detecta frases o requisitos con posible sesgo de género.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,18 +29,23 @@
       </div>
 
       <label for="texto" class="oculto">Texto de la oferta laboral</label>
-      <textarea id="texto" rows="14" spellcheck="true" placeholder="Pega aquí el texto completo de la vacante: título, funciones, requisitos y condiciones."></textarea>
+      <textarea id="texto" rows="14" spellcheck="true" aria-describedby="ayuda-limite" placeholder="Pega aquí el texto completo de la vacante: título, funciones, requisitos y condiciones."></textarea>
+      <p id="ayuda-limite" class="ayuda no-imprimir">Máximo <span id="limite">10.000</span> caracteres. El texto se analiza en tu navegador y no se envía a ningún servidor.</p>
       <div id="vista-marcada" class="vista-marcada" hidden></div>
+      <p id="version" class="version" hidden></p>
 
-      <div class="acciones">
+      <div class="acciones no-imprimir">
         <button type="button" id="analizar" class="primario">Analizar oferta</button>
         <button type="button" id="editar" class="secundario" hidden>Editar texto</button>
+        <button type="button" id="restaurar" class="secundario" hidden>Restaurar original</button>
+        <button type="button" id="exportar" class="secundario" disabled>Exportar PDF</button>
         <p id="mensaje" class="mensaje" role="status" aria-live="polite"></p>
       </div>
     </section>
 
     <aside class="reporte" aria-labelledby="titulo-reporte">
       <h2 id="titulo-reporte">Resultado del análisis</h2>
+      <p class="solo-imprimir">Reporte generado por EquiHire el <span id="fecha-reporte"></span></p>
 
       <p id="estado-vacio" class="vacio">Cuando analices una oferta, aquí verás cada hallazgo con su explicación y una alternativa inclusiva.</p>
 
@@ -56,16 +62,39 @@
       </div>
 
       <ol id="hallazgos" class="hallazgos"></ol>
+
+      <p class="aviso" role="note"><strong>Resultado orientativo.</strong> El índice señala posibles sesgos a partir de un catálogo de expresiones; no constituye un dictamen legal ni sirve para evaluar personas candidatas. La redacción final es decisión de la persona responsable de la selección.</p>
     </aside>
   </main>
 
-  <footer class="pie">
+  <footer class="pie no-imprimir">
     <p>EquiHire señala posibles sesgos a partir de un catálogo de expresiones. La redacción final de la vacante es decisión de la persona responsable de la selección.</p>
   </footer>
 
+  <dialog id="dialogo-sugerencia" class="dialogo" aria-labelledby="dlg-titulo">
+    <form id="dlg-formulario" method="dialog">
+      <h2 id="dlg-titulo">Aplicar sugerencia</h2>
+      <p class="dlg-etiqueta">Fragmento original</p>
+      <p id="dlg-frase" class="dlg-frase"></p>
+      <p class="dlg-etiqueta">Por qué se señala</p>
+      <p id="dlg-explicacion"></p>
+      <p class="dlg-etiqueta">Recomendación</p>
+      <p id="dlg-sugerencia"></p>
+      <label for="dlg-reemplazo" class="dlg-etiqueta">Texto que reemplazará el fragmento (puedes editarlo; déjalo vacío para eliminarlo)</label>
+      <textarea id="dlg-reemplazo" rows="3"></textarea>
+      <p class="dlg-nota">La versión original de la oferta se conserva y puedes restaurarla en cualquier momento.</p>
+      <div class="acciones">
+        <button type="submit" class="primario">Aceptar cambio</button>
+        <button type="button" id="dlg-cancelar" class="secundario">Cancelar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="src/utilidades.js"></script>
   <script src="src/catalogo.js"></script>
   <script src="src/analizador.js"></script>
   <script src="src/riesgo.js"></script>
+  <script src="src/versiones.js"></script>
   <script src="src/app.js"></script>
 </body>
 </html>

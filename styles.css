@@ -244,3 +244,51 @@ button:focus-visible, textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .medidor-relleno { transition: none; }
 }
+
+/* Ayudas, versión y aviso (FR-01, FR-04, HU-04) */
+.ayuda { margin-top: 0.5rem; color: var(--tinta-suave); font-size: 0.875rem; }
+.version { margin-top: 0.75rem; font-size: 0.9375rem; color: var(--acento-oscuro); font-weight: 500; }
+.aviso {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: #fffbe6;
+  border: 1px solid #b59b2a;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+.hallazgo-acciones { margin: 0.6rem 0 0 2.1rem; }
+.pequeno { padding: 0.45rem 0.9rem; font-size: 0.875rem; min-height: 44px; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Diálogo para aplicar sugerencias (HU-04) */
+.dialogo {
+  width: min(34rem, calc(100vw - 2rem));
+  border: 1px solid var(--linea);
+  border-radius: 6px;
+  padding: 1.5rem;
+  color: var(--tinta);
+}
+.dialogo::backdrop { background: rgba(28, 39, 51, 0.55); }
+.dialogo h2 { margin-bottom: 0.75rem; }
+.dialogo p { margin-bottom: 0.5rem; }
+.dlg-etiqueta { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--tinta-suave); margin-top: 0.5rem; }
+.dlg-frase { font-family: var(--serif); font-size: 1.125rem; font-weight: 600; color: var(--alto); }
+.dialogo textarea { min-height: 5rem; margin-top: 0.35rem; }
+.dlg-nota { font-size: 0.875rem; color: var(--tinta-suave); font-style: italic; margin-top: 0.5rem; }
+.dialogo button:focus-visible, .dialogo textarea:focus-visible { outline: 3px solid #f2b705; outline-offset: 2px; }
+
+/* Exportación a PDF mediante la impresión del navegador (HU-16) */
+.solo-imprimir { display: none; }
+@media print {
+  @page { margin: 1.6cm; }
+  body { background: #fff; font-size: 11pt; }
+  .no-imprimir, .ejemplos, textarea, .dialogo { display: none !important; }
+  .solo-imprimir { display: block; color: var(--tinta-suave); margin: 0.25rem 0 0.75rem; }
+  .espacio { display: block; padding: 0; }
+  .oferta, .reporte { border: 0; padding: 0; position: static; }
+  .reporte { margin-top: 1.5rem; }
+  .vista-marcada { min-height: 0; border: 1px solid var(--linea); }
+  .hallazgo { break-inside: avoid; }
+  .indice { break-inside: avoid; }
+  mark, .numero, .medidor-relleno, .aviso { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}

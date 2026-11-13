@@ -48,4 +48,13 @@ describe('HU-02 · Índice de riesgo de equidad y reporte', () => {
     });
     expect(reporte.resumen).toContain('Se encontraron 3 hallazgos');
   });
+
+  test('Criterio frontera: 20 es bajo, 30 es medio, 60 es alto y la suma se limita a 100', () => {
+    const h = (severidad) => ({ severidad, categoria: 'Prueba' });
+    expect(calcularIndiceRiesgo([h(1), h(1)])).toEqual({ puntaje: 20, nivel: 'Bajo' });
+    expect(calcularIndiceRiesgo([h(2)])).toEqual({ puntaje: 30, nivel: 'Medio' });
+    expect(calcularIndiceRiesgo([h(2), h(1), h(1)])).toEqual({ puntaje: 50, nivel: 'Medio' });
+    expect(calcularIndiceRiesgo([h(3)])).toEqual({ puntaje: 60, nivel: 'Alto' });
+    expect(calcularIndiceRiesgo([h(3), h(3), h(3)])).toEqual({ puntaje: 100, nivel: 'Alto' });
+  });
 });

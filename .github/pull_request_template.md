@@ -1,6 +1,9 @@
 ## Historia vinculada
 Closes #
 
+## Rama destino
+- [ ] Verifiqué que la rama destino del PR es `main`
+
 ## Descripción del cambio
 <!-- Qué se hizo y por qué -->
 
