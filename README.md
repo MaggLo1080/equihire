@@ -53,7 +53,7 @@ Para los equipos de Recursos Humanos y reclutadores, lograremos que puedan detec
 - Botón **Exportar PDF**: genera el reporte con la impresión del navegador; la oferta no sale del equipo (HU-16, FR-08).
 - Aviso permanente de resultado orientativo en pantalla y en el PDF (FR-04).
 - Política de seguridad de contenido (CSP) y escape de HTML probado (SC-01, SC-04).
-- CI con Node.js 24 y auditoría de dependencias (SC-11). 30 pruebas automáticas.
+- CI con Node.js 24 y auditoría de dependencias (SC-11). 31 pruebas automáticas.
 
 ## Definition of Done
 
@@ -111,7 +111,7 @@ El análisis se basa en un catálogo de expresiones con posible sesgo de género
 | `src/versiones.js` | Aplicación de sugerencias y versiones de la oferta |
 | `src/utilidades.js` | Escape de HTML para mostrar el texto de forma segura |
 | `src/app.js` | Conexión entre la interfaz y los módulos anteriores |
-| `tests/` | Pruebas unitarias con Jest (30 pruebas) |
+| `tests/` | Pruebas unitarias con Jest (31 pruebas) |
 | `docs/` | Plan de Desarrollo de Software y diagramas UML |
 
 ## Cómo ejecutar las pruebas
