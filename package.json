@@ -1,6 +1,6 @@
 {
   "name": "equihire",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Plataforma de análisis automatizado de sesgos de género en ofertas laborales.",
   "private": true,
   "scripts": {
@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=24"
   }
 }

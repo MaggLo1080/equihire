@@ -2,6 +2,7 @@
  * EquiHire · Motor de análisis de ofertas laborales.
  * HU-01 · Detecta frases o requisitos con posible sesgo de género, explica cada hallazgo
  * y propone una alternativa inclusiva.
+ * FR-01 · Valida que el texto no esté vacío ni supere LONGITUD_MAXIMA caracteres.
  */
 (function (raiz, fabrica) {
   if (typeof module === 'object' && module.exports) {
@@ -15,6 +16,26 @@
   // Límites de palabra compatibles con tildes y ñ (\b no reconoce letras acentuadas).
   var INICIO = '(?<![\\p{L}\\p{N}])';
   var FIN = '(?![\\p{L}\\p{N}])';
+
+  // FR-01 · Límite de longitud: cubre una vacante completa y acota el tiempo de análisis (NFR-01, SC-03).
+  var LONGITUD_MAXIMA = 10000;
+
+  /**
+   * Valida el texto antes de analizarlo.
+   * @param {string} texto Texto ingresado por la persona usuaria.
+   * @returns {{valido: boolean, motivo: (string|null), texto: string}}
+   *   motivo: 'vacio' si no hay contenido, 'excede' si supera LONGITUD_MAXIMA.
+   */
+  function validarTexto(texto) {
+    var limpio = typeof texto === 'string' ? texto.trim() : '';
+    if (limpio.length === 0) {
+      return { valido: false, motivo: 'vacio', texto: limpio };
+    }
+    if (limpio.length > LONGITUD_MAXIMA) {
+      return { valido: false, motivo: 'excede', texto: limpio };
+    }
+    return { valido: true, motivo: null, texto: limpio };
+  }
 
   function construirExpresion(patron) {
     return new RegExp(INICIO + '(?:' + patron + ')' + FIN, 'giu');
@@ -49,7 +70,8 @@
           categoria: regla.categoria,
           severidad: regla.severidad,
           explicacion: regla.explicacion,
-          sugerencia: regla.sugerencia
+          sugerencia: regla.sugerencia,
+          reemplazo: typeof regla.reemplazo === 'string' ? regla.reemplazo : ''
         });
       }
     });
@@ -71,5 +93,5 @@
     return hallazgos;
   }
 
-  return { analizarOferta: analizarOferta };
+  return { analizarOferta: analizarOferta, validarTexto: validarTexto, LONGITUD_MAXIMA: LONGITUD_MAXIMA };
 });

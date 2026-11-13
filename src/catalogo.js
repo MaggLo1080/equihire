@@ -2,6 +2,8 @@
  * EquiHire · Catálogo inicial de expresiones con posible sesgo de género.
  * Cada regla define un patrón (expresión regular sin delimitadores), su categoría,
  * su severidad (1 = sutil, 2 = moderado, 3 = explícito), una explicación y una alternativa.
+ * `reemplazo` es el texto que se propone por defecto al aplicar la sugerencia (HU-04);
+ * vacío significa que la recomendación es eliminar el fragmento. La persona siempre puede editarlo.
  * HU-01 · Analizar una oferta laboral para detectar sesgo de género.
  */
 (function (raiz, fabrica) {
@@ -21,7 +23,8 @@
       severidad: 3,
       explicacion:
         'Dirige la vacante a mujeres jóvenes y deja por fuera a otras personas igualmente calificadas para el cargo.',
-      sugerencia: 'Usa un término neutro como “persona”, por ejemplo: “persona para atención al cliente”.'
+      sugerencia: 'Usa un término neutro como “persona”, por ejemplo: “persona para atención al cliente”.',
+      reemplazo: 'persona'
     },
     {
       id: 'sexo-requerido',
@@ -29,7 +32,8 @@
       categoria: 'Requisito discriminatorio',
       severidad: 3,
       explicacion: 'El sexo o el género no es un requisito para desempeñar el cargo.',
-      sugerencia: 'Elimina el requisito y describe las competencias que el cargo realmente necesita.'
+      sugerencia: 'Elimina el requisito y describe las competencias que el cargo realmente necesita.',
+      reemplazo: ''
     },
     {
       id: 'solo-un-genero',
@@ -38,7 +42,8 @@
       categoria: 'Requisito discriminatorio',
       severidad: 3,
       explicacion: 'Restringe la convocatoria a un solo género sin una razón relacionada con el cargo.',
-      sugerencia: 'Abre la convocatoria a todas las personas que cumplan el perfil.'
+      sugerencia: 'Abre la convocatoria a todas las personas que cumplan el perfil.',
+      reemplazo: 'para todas las personas'
     },
     {
       id: 'se-busca-genero',
@@ -47,7 +52,8 @@
       categoria: 'Requisito discriminatorio',
       severidad: 3,
       explicacion: 'Define el género de la persona a contratar, lo que excluye a otros perfiles calificados.',
-      sugerencia: 'Escribe “se requiere una persona con experiencia en…” y describe el perfil.'
+      sugerencia: 'Escribe “se requiere una persona con experiencia en…” y describe el perfil.',
+      reemplazo: 'se requiere una persona'
     },
     {
       id: 'buena-presencia',
@@ -56,7 +62,8 @@
       severidad: 2,
       explicacion:
         'Es un criterio de apariencia física difícil de medir que suele exigirse con más rigor a las mujeres.',
-      sugerencia: 'Si el cargo es de atención al público, describe la conducta esperada: “trato cordial y cumplimiento del código de vestimenta”.'
+      sugerencia: 'Si el cargo es de atención al público, describe la conducta esperada: “trato cordial y cumplimiento del código de vestimenta”.',
+      reemplazo: 'trato cordial'
     },
     {
       id: 'apariencia-atractiva',
@@ -64,7 +71,8 @@
       categoria: 'Criterio subjetivo',
       severidad: 2,
       explicacion: 'La apariencia física no es una competencia laboral y su exigencia suele recaer sobre las mujeres.',
-      sugerencia: 'Elimina la referencia a la apariencia y describe las habilidades de servicio que necesitas.'
+      sugerencia: 'Elimina la referencia a la apariencia y describe las habilidades de servicio que necesitas.',
+      reemplazo: ''
     },
     {
       id: 'estado-civil',
@@ -72,7 +80,8 @@
       categoria: 'Requisito discriminatorio',
       severidad: 3,
       explicacion: 'La situación familiar no se relaciona con el desempeño y su exigencia penaliza con más frecuencia a las mujeres.',
-      sugerencia: 'Elimina este requisito de la oferta.'
+      sugerencia: 'Elimina este requisito de la oferta.',
+      reemplazo: ''
     },
     {
       id: 'sin-hijos',
@@ -80,7 +89,8 @@
       categoria: 'Requisito discriminatorio',
       severidad: 3,
       explicacion: 'Exigir no tener hijos excluye a quienes tienen responsabilidades de cuidado, que recaen en su mayoría sobre las mujeres.',
-      sugerencia: 'Elimina este requisito y, si es necesario, especifica el horario real del cargo.'
+      sugerencia: 'Elimina este requisito y, si es necesario, especifica el horario real del cargo.',
+      reemplazo: ''
     },
     {
       id: 'embarazo',
@@ -88,7 +98,8 @@
       categoria: 'Requisito discriminatorio',
       severidad: 3,
       explicacion: 'Condicionar la contratación a un embarazo es una práctica discriminatoria.',
-      sugerencia: 'Elimina cualquier mención al embarazo en la oferta y en el proceso de selección.'
+      sugerencia: 'Elimina cualquier mención al embarazo en la oferta y en el proceso de selección.',
+      reemplazo: ''
     },
     {
       id: 'disponibilidad-irrestricta',
@@ -98,7 +109,8 @@
       severidad: 2,
       explicacion:
         'Pedir disponibilidad sin límites, cuando el cargo no lo exige, desalienta a quienes tienen responsabilidades de cuidado, que en su mayoría son mujeres.',
-      sugerencia: 'Especifica el horario real: “de lunes a viernes de 8:00 a. m. a 5:00 p. m., con disponibilidad ocasional para eventos programados”.'
+      sugerencia: 'Especifica el horario real: “de lunes a viernes de 8:00 a. m. a 5:00 p. m., con disponibilidad ocasional para eventos programados”.',
+      reemplazo: 'disponibilidad en el horario establecido'
     },
     {
       id: 'rasgos-agresivos',
@@ -107,7 +119,8 @@
       severidad: 1,
       explicacion:
         'Son rasgos asociados culturalmente a lo masculino. Estudios sobre anuncios de empleo muestran que este tipo de lenguaje hace la vacante menos atractiva para mujeres.',
-      sugerencia: 'Prefiere expresiones como “con iniciativa” u “orientación a resultados”.'
+      sugerencia: 'Prefiere expresiones como “con iniciativa” u “orientación a resultados”.',
+      reemplazo: 'con iniciativa'
     },
     {
       id: 'ambiente-competitivo',
@@ -116,7 +129,8 @@
       severidad: 1,
       explicacion:
         'Destacar la competencia interna como rasgo central del trabajo puede desmotivar la postulación de algunos perfiles.',
-      sugerencia: 'Describe el entorno en términos de metas y colaboración: “equipo orientado a metas compartidas”.'
+      sugerencia: 'Describe el entorno en términos de metas y colaboración: “equipo orientado a metas compartidas”.',
+      reemplazo: 'equipo orientado a metas compartidas'
     }
   ];
 });

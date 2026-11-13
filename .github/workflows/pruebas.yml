@@ -12,13 +12,18 @@ jobs:
       - name: Descargar el código
         uses: actions/checkout@v4
 
+      # Node 20 llegó a fin de soporte el 30/04/2026; se usa la LTS vigente.
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Instalar dependencias
         run: npm install
 
       - name: Ejecutar pruebas
         run: npm test
+
+      # SC-11 · Falla si alguna dependencia tiene vulnerabilidades altas o críticas.
+      - name: Auditar dependencias
+        run: npm audit --audit-level=high
